@@ -1,6 +1,7 @@
 import { Categories } from "@/components/categories";
 import { Companions } from "@/components/companions";
 import { SearchInput } from "@/components/search-input";
+import { MemoryManager } from "@/lib/memory";
 import prismadb from "@/lib/prismadb";
 
 interface RootPageProps {
@@ -29,6 +30,10 @@ export default async function Home({ searchParams }: RootPageProps) {
       },
     },
   });
+
+  const memoryManager = new MemoryManager();
+  let someValue = memoryManager.vectorSearch("13", "1481941");
+  console.log("PINECONE INDEXES: " + someValue);
 
   const categories = await prismadb.category.findMany();
 

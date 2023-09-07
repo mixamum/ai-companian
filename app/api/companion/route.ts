@@ -1,3 +1,4 @@
+import { MemoryManager } from "@/lib/memory";
 import prismadb from "@/lib/prismadb";
 import { currentUser } from "@clerk/nextjs";
 import { NextResponse } from "next/server"
@@ -15,6 +16,8 @@ export async function POST(req: Request) {
         if (!src || !name || !description || !instructions || !seed || !categoryId) {
             return new NextResponse("Missing required fields", { status: 400 });
         }
+
+
 
         // Check for subscription
 
