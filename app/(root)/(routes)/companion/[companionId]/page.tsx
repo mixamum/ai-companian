@@ -1,6 +1,7 @@
 import prismadb from "@/lib/prismadb";
 import { CompanionForm } from "./components/companion-form";
 import { auth, redirectToSignIn } from "@clerk/nextjs";
+import SearchPage from "./components/ai-image";
 
 interface CompanianIdPageProps {
   params: {
@@ -25,7 +26,9 @@ const CompanianIdPage = async ({ params }: CompanianIdPageProps) => {
 
   const categories = await prismadb.category.findMany();
 
-  return <CompanionForm initialData={companion} categories={categories} />;
+  // return <CompanionForm initialData={companion} categories={categories} />;
+
+  return <SearchPage />;
 };
 
 export default CompanianIdPage;

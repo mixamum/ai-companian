@@ -141,8 +141,6 @@ export async function POST(
             });
         }
 
-        console.log("AM HERE")
-
         return new StreamingTextResponse(s);
     } catch (error) {
         console.log("SOME ERROR")
