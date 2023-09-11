@@ -1,9 +1,9 @@
 "use client";
 
-import { Companion } from "@prisma/client";
-import { ChatMessage, ChatMessageProps } from "./chat-message";
 import { ElementRef, useEffect, useRef, useState } from "react";
-import { Companions } from "./companions";
+import { Companion } from "@prisma/client";
+
+import { ChatMessage, ChatMessageProps } from "@/components/chat-message";
 
 interface ChatMessagesProps {
   messages: ChatMessageProps[];
@@ -47,12 +47,12 @@ export const ChatMessages = ({
       {messages.map((message) => (
         <ChatMessage
           key={message.content}
-          role={message.role}
+          src={companion.src}
           content={message.content}
-          src={message.src}
+          role={message.role}
         />
       ))}
-      {isLoading && <ChatMessage role="system" src={companion.src} isLoading />}
+      {isLoading && <ChatMessage src={companion.src} role="system" isLoading />}
       <div ref={scrollRef} />
     </div>
   );

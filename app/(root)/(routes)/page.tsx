@@ -31,10 +31,6 @@ export default async function Home({ searchParams }: RootPageProps) {
     },
   });
 
-  const memoryManager = new MemoryManager();
-  let someValue = memoryManager.vectorSearch("13", "1481941");
-  console.log("PINECONE INDEXES: " + someValue);
-
   const categories = await prismadb.category.findMany();
 
   return (

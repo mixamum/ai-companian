@@ -1,14 +1,14 @@
 "use client";
 
-import { useTheme } from "next-themes";
-import { useToast } from "./ui/use-toast";
-import { cn } from "@/lib/utils";
-import { BotAvatar } from "./bot-avatar";
-
 import { BeatLoader } from "react-spinners";
-import { UserAvatar } from "./user-avatar";
-import { Button } from "./ui/button";
 import { Copy } from "lucide-react";
+import { useTheme } from "next-themes";
+
+import { cn } from "@/lib/utils";
+import { BotAvatar } from "@/components/bot-avatar";
+import { UserAvatar } from "@/components/user-avatar";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 export interface ChatMessageProps {
   role: "system" | "user";
@@ -33,9 +33,11 @@ export const ChatMessage = ({
 
     navigator.clipboard.writeText(content);
     toast({
-      description: "Message copied to clipboard",
+      description: "Message copied to clipboard.",
+      duration: 3000,
     });
   };
+
   return (
     <div
       className={cn(
@@ -46,7 +48,7 @@ export const ChatMessage = ({
       {role !== "user" && src && <BotAvatar src={src} />}
       <div className="rounded-md px-4 py-2 max-w-sm text-sm bg-primary/10">
         {isLoading ? (
-          <BeatLoader size={5} color={theme === "light" ? "black" : "white"} />
+          <BeatLoader color={theme === "light" ? "black" : "white"} size={5} />
         ) : (
           content
         )}
