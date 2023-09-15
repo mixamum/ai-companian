@@ -16,29 +16,14 @@ export default function SearchPage() {
         try {
             event.preventDefault()
             setLoading(1);
-        // const response = await fetch('/api/image', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         prompt
-        //     })
-        // });
 
-            const response = await axios.post("/api/image", prompt);
-
-            console.log("Response in ai-image " + response)
-
-            // const imageResponse = response;
-
-            // setImageURL(imageResponse)
-            // console.log(imageResponse);
-            // setImageURL(imageResponse.imageUrl);
-            setLoading(0);
+            await axios.post("/api/image", prompt)
+            .then((response) => {
+                setImageURL(response.data.imageUrl)
+                setLoading(0)
+            })
+            
             router.refresh();
-            // router.push("/");
         } catch (error) {
             console.error(error)
         }
@@ -49,7 +34,7 @@ export default function SearchPage() {
     }
 
     if (imageURL !== '' && loading === 0) {
-        return (
+        return (    
             <div className="imageContainer">
                 <img src={imageURL}></img>
             </div>

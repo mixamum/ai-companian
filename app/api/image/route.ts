@@ -5,20 +5,27 @@ export async function POST(request: Request) {
     // if (!req.body.prompt) return new NextResponse("Pass in prompt field for image generation", { status: 400 });
 
     try {
+
+        const prompt = await request.text()
+
         // const { prompt } = await request.json();
 
         // console.log("PROMPT BEFORE =>>> " + "wow");
+
+        console.log("PROMPT ==>  " + prompt)
 
         // if (!prompt) return new NextResponse("Pass in prompt field for image generation", { status: 400 });
 
         const openai = new OpenAI({
             apiKey: process.env.OPENAI_API_KEY
         });
+
+
     
         // console.log("PROMPT" + prompt);
     
         const response = await openai.images.generate({
-            prompt: "Christiano Ronaldo futuristic",
+            prompt: prompt,
             n: 1,
             size: "1024x1024",
         });

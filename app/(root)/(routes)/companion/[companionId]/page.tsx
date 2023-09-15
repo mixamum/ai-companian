@@ -26,9 +26,9 @@ const CompanianIdPage = async ({ params }: CompanianIdPageProps) => {
 
   const categories = await prismadb.category.findMany();
 
-  // return <CompanionForm initialData={companion} categories={categories} />;
+  return <CompanionForm initialData={companion} categories={categories} />;
 
-  return <SearchPage />;
+  // return <SearchPage />;
 };
 
 export default CompanianIdPage;
